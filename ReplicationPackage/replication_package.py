@@ -1,7 +1,8 @@
 import pandas as pd
 # import json
-from  scopus_script import search_scopus, scopus_extract_information 
+from  scopus_search import search_scopus, scopus_extract_information 
 from ieee_search import search_ieee, extract_ieee_information
+from data_analysis import process_and_save_results
 
 
 if __name__ == "__main__":
@@ -57,7 +58,8 @@ if __name__ == "__main__":
     ieee_df = pd.DataFrame(ieee_results)
     ieee_df.to_csv("ieee_results.csv", index=False)
     print("Results saved csv")
-    # TODO: group the unique ones from all search engines
+    process_and_save_results(scopus_df, ieee_df)
+
 
 
 # TODO: Analyzing the data
