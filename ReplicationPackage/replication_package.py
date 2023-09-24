@@ -12,8 +12,8 @@ if __name__ == "__main__":
 
     # TODO: create the query by collection the terms from a csv
     # QUERY = "(agile OR agility OR xp OR ”extreme W/0 programming” OR scrum OR kanban OR scrumban OR safescrum OR agilesafe OR ”agile W/0 safe”) AND (safety OR ”safety W/0 systems” OR safetycritical OR ”safety W/0 critical” OR ”safety-critical W/0 systems” OR ”safety W/0 critical W/0 systems” OR ”high W/0 integrity” OR ”high W/0 integrity W/0 systems” OR his OR ”safety W/0 integrity”) AND (aerospace OR avionic OR avionics OR aviation OR aeronautic OR aeronautics OR aeronautical) OR (”ARP W/0 4761” OR arp4761 OR ”ARP W/0 4754” OR arp4754 OR do-178 OR do-178b OR DO 178C OR do178 OR do178b OR do178c OR do-331 OR do331)"  
-    SCOPUS_QUERY = "docops"
-    IEEE_QUERY = "machinelearning"
+    SCOPUS_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
+    IEEE_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
     
     scopus_results = []
     ieee_results = []
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     scopus_more_data = True
     ieee_more_data = True
 
-    while scopus_more_data or ieee_more_data:
+    while ((scopus_more_data or ieee_more_data) and start_index < 500):
         print(f"Fetching results starting from index {start_index}...")
 
         # Scopus search
@@ -53,12 +53,8 @@ if __name__ == "__main__":
 
         start_index += PAGE_SIZE
 
-    scopus_df = pd.DataFrame(scopus_results)
-    scopus_df.to_csv("scopus_results.csv", index=False)
-    ieee_df = pd.DataFrame(ieee_results)
-    ieee_df.to_csv("ieee_results.csv", index=False)
-    print("Results saved csv")
-    process_and_save_results(scopus_df, ieee_df)
+
+    process_and_save_results(scopus_results, ieee_results)
 
 
 

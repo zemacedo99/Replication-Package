@@ -1,41 +1,39 @@
 import pandas as pd
+import pandas as pd
 
-def process_and_save_results(scopus_df, ieee_df):
+def process_and_save_results(scopus_results, ieee_results):
     """
     Combines data from Scopus and IEEE, creates two CSVs: 
     one for unique results and another for repeated results.
     
     Parameters:
-    - scopus_df (DataFrame): Results from Scopus
-    - ieee_df (DataFrame): Results from IEEE
+    - scopus_results (List): Results from Scopus
+    - ieee_results (List): Results from IEEE
 
     Returns:
     None
     """
 
+    scopus_df = pd.DataFrame(scopus_results)
+    scopus_df.to_csv("scopus_results.csv", index=False)
+    ieee_df = pd.DataFrame(ieee_results)
+    ieee_df.to_csv("ieee_results.csv", index=False)
+
+    # Mark the source of each row in the original dataframes
+    scopus_df['Source'] = 'Scopus'
+    ieee_df['Source'] = 'IEEE'
+    
     # Combine the DataFrames
     all_results_df = pd.concat([scopus_df, ieee_df], ignore_index=True, sort=False)
 
-    # Find duplicated rows based on 'Title' (or another relevant column)
-    duplicate_titles = all_results_df[all_results_df.duplicated(subset='Title', keep=False)].copy()
-
-    # Annotate the duplicates with their source
-    def annotate_source(row):
-        sources = []
-        if row in scopus_df['Title'].values:
-            sources.append("Scopus")
-        if row in ieee_df['Title'].values:
-            sources.append("IEEE")
-        return ', '.join(sources)
-
-    duplicate_titles['Source'] = duplicate_titles['Title'].apply(annotate_source)
-
+    # Extract rows which are duplicated in Title
+    duplicated_df = all_results_df[all_results_df.duplicated(subset='Title', keep='first')]
 
     # Save the duplicates to a CSV
-    duplicate_titles.to_csv("repeated.csv", index=False)
+    duplicated_df.to_csv("repeated.csv", index=False)
 
-    # Drop duplicates from the all_results_df
-    all_results_df.drop_duplicates(subset='Title', inplace=True)
+    # Drop duplicates from the all_results_df to only keep the first occurrence
+    unique_results_df = all_results_df.drop_duplicates(subset='Title', keep='first')
 
-    # Save the results to CSV
-    all_results_df.to_csv("all_results.csv", index=False)
+    # Save the unique results to CSV
+    unique_results_df.to_csv("all_results.csv", index=False)
