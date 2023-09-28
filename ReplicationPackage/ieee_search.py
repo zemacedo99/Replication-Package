@@ -38,8 +38,9 @@ def extract_ieee_information(data):
         extracted.append({
             'Title': title,
             'Publication Year': publication_year,
-            'Journal': publisher,
+            'Venue': publisher,
             'Authors': ', '.join(authors_names)
+            # add link
         })
     
     return extracted

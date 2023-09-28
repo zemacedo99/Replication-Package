@@ -5,7 +5,8 @@ def search_scopus(query, api_key,start=0, count=25):
     
     headers = {
         "Accept": "application/json",
-        "X-ELS-APIKey": api_key
+        "X-ELS-APIKey": api_key,
+        "X-ELS-Insttoken" : "35634be89c56c9527b9c35034e7b9cab"
     }
     
     params = {
@@ -39,14 +40,26 @@ def scopus_extract_information(data):
             publication_year = None
         
         journal = item['prism:publicationName']
+        # prism:aggregationType
         
         author_name = item.get('dc:creator', '')
         
         extracted.append({
             'Title': title,
             'Publication Year': publication_year,
-            'Journal': journal,
+            'Venue': journal,
             'Authors': author_name  
         })
     
     return extracted
+
+
+# if __name__ == "__main__":
+#     API_KEY = "c803f556d065be19b3905ccee12adbfa"
+#     query = "scrum" 
+        
+#     start_index = 0
+#     PAGE_SIZE = 25
+#     results = search_scopus(query, API_KEY, start=start_index, count=PAGE_SIZE)
+
+#     print(results)

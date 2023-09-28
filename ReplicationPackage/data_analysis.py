@@ -37,3 +37,5 @@ def process_and_save_results(scopus_results, ieee_results):
 
     # Save the unique results to CSV
     unique_results_df.to_csv("all_results.csv", index=False)
+
+# after agile manidest 

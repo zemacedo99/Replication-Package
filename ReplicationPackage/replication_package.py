@@ -8,12 +8,13 @@ from data_analysis import process_and_save_results
 if __name__ == "__main__":
     # TODO: when providing this script, make this an input for the user
     SCOPUS_API_KEY = "c803f556d065be19b3905ccee12adbfa" 
+    # SCOPUS_API_KEY = "a9667b0e7663479dfd1d3a64619c8b9f"
     IEEE_API_KEY = "vcahw7f4hxwxrv8kdapvyhnv"
 
     # TODO: create the query by collection the terms from a csv
     # QUERY = "(agile OR agility OR xp OR ”extreme W/0 programming” OR scrum OR kanban OR scrumban OR safescrum OR agilesafe OR ”agile W/0 safe”) AND (safety OR ”safety W/0 systems” OR safetycritical OR ”safety W/0 critical” OR ”safety-critical W/0 systems” OR ”safety W/0 critical W/0 systems” OR ”high W/0 integrity” OR ”high W/0 integrity W/0 systems” OR his OR ”safety W/0 integrity”) AND (aerospace OR avionic OR avionics OR aviation OR aeronautic OR aeronautics OR aeronautical) OR (”ARP W/0 4761” OR arp4761 OR ”ARP W/0 4754” OR arp4754 OR do-178 OR do-178b OR DO 178C OR do178 OR do178b OR do178c OR do-331 OR do331)"  
-    SCOPUS_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
-    IEEE_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
+    SCOPUS_QUERY = "agile"
+    IEEE_QUERY = "agile"
     
     scopus_results = []
     ieee_results = []
