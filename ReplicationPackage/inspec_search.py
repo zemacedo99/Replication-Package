@@ -33,6 +33,8 @@ def engineering_village_extract_information(data):
     page_entries = page_results.get('PAGE-ENTRY', [])
     
     extracted = []
+
+    base_doi_url = "https://doi.org/"
     
     for entry in page_entries:
         ei_document = entry.get('EI-DOCUMENT', {})
@@ -46,7 +48,11 @@ def engineering_village_extract_information(data):
             publication_year = doc_properties['SD'].split(' ')[-1]  # Split by comma and get the last part        
         
         venue = doc_properties.get('SO')
-        
+        venue_type = doc_properties.get('DT')
+
+        doi = doc_properties.get('DO')
+        link = base_doi_url + doi if doi else None
+
         aus = ei_document.get('AUS', {})
         authors = aus.get('AU', [])
         author_names = ', '.join([author.get('NAME', '') for author in authors])
@@ -55,21 +61,22 @@ def engineering_village_extract_information(data):
             'Title': title,
             'Publication Year': publication_year,
             'Venue': venue,
-            'Authors': author_names
-            # add link
+            'Venue Type': venue_type,
+            'Authors': author_names,
+            'Link': link
         })
     
     return extracted
 
-# if __name__ == "__main__":
-#     ELSEVIER_API_KEY = "c803f556d065be19b3905ccee12adbfa" 
-#     ELSEVIER_INST_TOKEN = "35634be89c56c9527b9c35034e7b9cab"
-#     query = "agile" 
+if __name__ == "__main__":
+    ELSEVIER_API_KEY = "c803f556d065be19b3905ccee12adbfa" 
+    ELSEVIER_INST_TOKEN = "35634be89c56c9527b9c35034e7b9cab"
+    query = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace" 
         
-#     start_index = 0
-#     PAGE_SIZE = 25
-#     results = search_engineering_village(query, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, start=start_index, count=PAGE_SIZE)
+    start_index = 0
+    PAGE_SIZE = 25
+    results = search_engineering_village(query, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, start=start_index, count=PAGE_SIZE)
  
-#     data = engineering_village_extract_information(results)
+    data = engineering_village_extract_information(results)
 
-#     print(data)
+    print(results)
