@@ -28,6 +28,8 @@ def extract_ieee_information(data):
         title = item.get('title')
         publication_year = item.get('publication_year')
         publisher = item.get('publisher')
+        venue_type = item.get('content_type')
+        link = item.get('html_url')
         
         # Adjusting extraction based on the observed data structure
         authors_dict = item.get('authors', {})
@@ -39,9 +41,19 @@ def extract_ieee_information(data):
             'Title': title,
             'Publication Year': publication_year,
             'Venue': publisher,
-            'Authors': ', '.join(authors_names)
-            # add link
+            'Venue Type': venue_type,
+            'Authors': ', '.join(authors_names),
+            'Link': link
         })
     
     return extracted
 
+if __name__ == "__main__":
+    IEEE_API_KEY = "vcahw7f4hxwxrv8kdapvyhnv"
+    query = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace" 
+        
+    start_index = 0
+    PAGE_SIZE = 25
+    results = search_ieee(query, IEEE_API_KEY,  start_record=start_index + 1, max_records=PAGE_SIZE)
+
+    print(results)
