@@ -41,6 +41,8 @@ def scopus_extract_information(data):
         
         journal = item['prism:publicationName']
         venue_type = item['prism:aggregationType']
+        scopus_link = next((link['@href'] for link in item['link'] if link['@ref'] == 'scopus'), None)
+
         
         author_name = item.get('dc:creator', '')
         
@@ -49,19 +51,20 @@ def scopus_extract_information(data):
             'Publication Year': publication_year,
             'Venue': journal,
             'Venue Type': venue_type,
-            'Authors': author_name  
-            # add link
+            'Authors': author_name,
+            'Link': scopus_link
         })
     
     return extracted
 
 
 # if __name__ == "__main__":
-#     API_KEY = "c803f556d065be19b3905ccee12adbfa"
-#     query = "scrum" 
+#     ELSEVIER_API_KEY = "c803f556d065be19b3905ccee12adbfa" 
+#     ELSEVIER_INST_TOKEN = "35634be89c56c9527b9c35034e7b9cab"
+#     query = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace" 
         
 #     start_index = 0
 #     PAGE_SIZE = 25
-#     results = search_scopus(query, API_KEY, start=start_index, count=PAGE_SIZE)
+#     results = search_scopus(query, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, start=start_index, count=PAGE_SIZE)
 
 #     print(results)
