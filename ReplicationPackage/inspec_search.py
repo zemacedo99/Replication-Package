@@ -39,7 +39,12 @@ def engineering_village_extract_information(data):
         doc_properties = ei_document.get('DOCUMENTPROPERTIES', {})
         
         title = doc_properties.get('TI')
+
+        # Try to get the year from 'YR', if not present, extract from 'SD'
         publication_year = doc_properties.get('YR')
+        if not publication_year and 'SD' in doc_properties:
+            publication_year = doc_properties['SD'].split(' ')[-1]  # Split by comma and get the last part        
+        
         venue = doc_properties.get('SO')
         
         aus = ei_document.get('AUS', {})
@@ -51,6 +56,7 @@ def engineering_village_extract_information(data):
             'Publication Year': publication_year,
             'Venue': venue,
             'Authors': author_names
+            # add link
         })
     
     return extracted

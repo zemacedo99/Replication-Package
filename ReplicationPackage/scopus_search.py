@@ -40,7 +40,7 @@ def scopus_extract_information(data):
             publication_year = None
         
         journal = item['prism:publicationName']
-        # prism:aggregationType
+        venue_type = item['prism:aggregationType']
         
         author_name = item.get('dc:creator', '')
         
@@ -48,7 +48,9 @@ def scopus_extract_information(data):
             'Title': title,
             'Publication Year': publication_year,
             'Venue': journal,
+            'Venue Type': venue_type,
             'Authors': author_name  
+            # add link
         })
     
     return extracted
