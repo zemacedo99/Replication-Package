@@ -1,12 +1,12 @@
 import requests
 
-def search_scopus(query, api_key,start=0, count=25):
+def search_scopus(query, api_key, inst_token, start=0, count=25):
     base_url = "https://api.elsevier.com/content/search/scopus"
     
     headers = {
         "Accept": "application/json",
         "X-ELS-APIKey": api_key,
-        "X-ELS-Insttoken" : "35634be89c56c9527b9c35034e7b9cab"
+        "X-ELS-Insttoken" : inst_token 
     }
     
     params = {
