@@ -1,7 +1,7 @@
 from scopus_search import search_scopus, scopus_extract_information 
 from ieee_search import search_ieee, extract_ieee_information
 from inspec_search import search_engineering_village, engineering_village_extract_information
-from data_analysis import process_and_save_results
+from data_process import process_and_save_results
 
 
 if __name__ == "__main__":
