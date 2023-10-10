@@ -12,9 +12,9 @@ if __name__ == "__main__":
 
     # TODO: create the query by collection the terms from a csv
     # QUERY = "(agile OR agility OR xp OR ”extreme W/0 programming” OR scrum OR kanban OR scrumban OR safescrum OR agilesafe OR ”agile W/0 safe”) AND (safety OR ”safety W/0 systems” OR safetycritical OR ”safety W/0 critical” OR ”safety-critical W/0 systems” OR ”safety W/0 critical W/0 systems” OR ”high W/0 integrity” OR ”high W/0 integrity W/0 systems” OR his OR ”safety W/0 integrity”) AND (aerospace OR avionic OR avionics OR aviation OR aeronautic OR aeronautics OR aeronautical) OR (”ARP W/0 4761” OR arp4761 OR ”ARP W/0 4754” OR arp4754 OR do-178 OR do-178b OR DO 178C OR do178 OR do178b OR do178c OR do-331 OR do331)"  
-    SCOPUS_QUERY = "agile"
-    IEEE_QUERY = "agile"
-    ENGINEERING_VILLAGE_QUERY = "agile"
+    SCOPUS_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
+    IEEE_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
+    ENGINEERING_VILLAGE_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
 
     scopus_results = []
     ieee_results = []

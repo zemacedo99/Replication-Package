@@ -30,7 +30,7 @@ def search_engineering_village(query, api_key, inst_token, start=0, count=25):
 # The Engineering Village API returns a lot more information https://dev.elsevier.com/tecdoc_ev_request.html
 def engineering_village_extract_information(data):
     page_results = data.get('PAGE', {}).get('PAGE-RESULTS', {})
-    page_entries = page_results.get('PAGE-ENTRY', [])
+    page_entries = page_results.get('PAGE-ENTRY', []) if isinstance(page_results, dict) else []
     
     extracted = []
 
