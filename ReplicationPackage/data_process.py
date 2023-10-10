@@ -73,6 +73,9 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     # Combine the DataFrames
     all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df], ignore_index=True, sort=False)
 
+    # Save all results to a CSV
+    all_results_df.to_csv(os.path.join(folder_name,"all_results.csv"), index=False)
+
     # Group by Title and aggregate the sources
     source_agg = all_results_df.groupby('Title')['Source'].apply(lambda x: ', '.join(x)).reset_index()
 
