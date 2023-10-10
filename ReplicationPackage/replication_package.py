@@ -2,10 +2,13 @@ from scopus_search import search_scopus, scopus_extract_information
 from ieee_search import search_ieee, extract_ieee_information
 from inspec_search import search_engineering_village, engineering_village_extract_information
 from data_process import process_and_save_results
-from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY
+try:
+    from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY
+except ImportError:
+    raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 if __name__ == "__main__":
-
+    
     # TODO: create the query by collection the terms from a csv
     # QUERY = "(agile OR agility OR xp OR ”extreme W/0 programming” OR scrum OR kanban OR scrumban OR safescrum OR agilesafe OR ”agile W/0 safe”) AND (safety OR ”safety W/0 systems” OR safetycritical OR ”safety W/0 critical” OR ”safety-critical W/0 systems” OR ”safety W/0 critical W/0 systems” OR ”high W/0 integrity” OR ”high W/0 integrity W/0 systems” OR his OR ”safety W/0 integrity”) AND (aerospace OR avionic OR avionics OR aviation OR aeronautic OR aeronautics OR aeronautical) OR (”ARP W/0 4761” OR arp4761 OR ”ARP W/0 4754” OR arp4754 OR do-178 OR do-178b OR DO 178C OR do178 OR do178b OR do178c OR do-331 OR do331)"  
     SCOPUS_QUERY = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace"
