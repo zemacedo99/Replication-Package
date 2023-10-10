@@ -1,6 +1,53 @@
 import pandas as pd
+import os
 
-def process_and_save_results(scopus_results, ieee_results, engineering_village_results):
+def filter_after_agile_manifesto_date(df):
+    """
+    Removes rows from the DataFrame where the Publication Year is before 2001.
+
+    Parameters:
+    - df (DataFrame): DataFrame containing article or paper details
+
+    Returns:
+    - DataFrame: Filtered DataFrame
+    """
+
+    # Drop rows where 'Publication Year' is NaN (if any)
+    df = df.dropna(subset=['Publication Year'])
+
+    # Ensure 'Publication Year' is of type int
+    try:
+        df['Publication Year'] = df['Publication Year'].astype(int)
+    except ValueError:
+        print("There are values in 'Publication Year' that cannot be converted to integers.")
+        return df  
+
+    # Filter rows where Publication Year is 2001 or later
+    return df[df['Publication Year'] >= 2001]
+
+def process_and_save_result(result, data_base, folder_name="ReplicationPackage/data_results"):
+    """
+    Transforms data into a DataFrame, marks the source of each row, and saves to CSV.
+
+    Parameters:
+    - result (List): Raw data.
+    - data_base (str): The name of the database/source.
+
+    Returns:
+    - DataFrame: Processed DataFrame.
+    """
+    
+    df = pd.DataFrame(result)
+    df['Source'] = data_base
+    
+    # Make filename safe (replace spaces with underscores, etc.) and create the full path
+    filename = os.path.join(folder_name, data_base.replace(" ", "_").lower() + ".csv")
+    
+    df.to_csv(filename, index=False)
+    return df
+
+
+def process_and_save_results(scopus_results, ieee_results, engineering_village_results, folder_name="ReplicationPackage/data_results"):
     """
     Combines data from Scopus, IEEE, and Engineering Village, creates two CSVs: 
     one for unique results and another for repeated results.
@@ -14,15 +61,15 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     None
     """
 
-    scopus_df = pd.DataFrame(scopus_results)
-    ieee_df = pd.DataFrame(ieee_results)
-    engineering_village_df = pd.DataFrame(engineering_village_results)
-    
-    # Mark the source of each row in the original dataframes
-    scopus_df['Source'] = 'Scopus'
-    ieee_df['Source'] = 'IEEE'
-    engineering_village_df['Source'] = 'Engineering Village'
-    
+    # Ensure the folder exists
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
+    scopus_df = process_and_save_result(scopus_results, "Scopus")
+    ieee_df = process_and_save_result(ieee_results, "IEEE")
+    engineering_village_df = process_and_save_result(engineering_village_results, "Engineering Village")
+
+
     # Combine the DataFrames
     all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df], ignore_index=True, sort=False)
 
@@ -36,17 +83,15 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     duplicated_df = all_results_df[all_results_df.duplicated(subset='Title', keep=False)].drop_duplicates(subset='Title', keep='first')
 
     # Save the duplicates to a CSV
-    duplicated_df.to_csv("repeated.csv", index=False)
+    duplicated_df.to_csv(os.path.join(folder_name,"repeated.csv"), index=False)
 
     # Drop duplicates from the all_results_df to only keep the first occurrence
     unique_results_df = all_results_df.drop_duplicates(subset='Title', keep='first')
 
+    # Process unique_results_df using the filter_after_agile_manifesto_date function
+    unique_results_df = filter_after_agile_manifesto_date(unique_results_df)
+
     # Save the unique results to CSV
-    unique_results_df.to_csv("all_results.csv", index=False)
+    unique_results_df.to_csv(os.path.join(folder_name,"unique_results.csv"), index=False)
     
-    # Save individual database results to CSV
-    scopus_df.to_csv("scopus_results.csv", index=False)
-    ieee_df.to_csv("ieee_results.csv", index=False)
 
-
-# after agile manidest 
