@@ -20,6 +20,15 @@ def create_query_from_csv(filename):
 
     return query
 
+def write_query_to_py_file(query):
+    py_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "query.py")
+    with open(py_file_path, 'w') as f:
+        f.write(f'SCOPUS_QUERY = "{query}"\n')
+        f.write(f'IEEE_QUERY = "{query}"\n')
+        f.write(f'ENGINEERING_VILLAGE_QUERY = "{query}"\n')
+
 # Assuming 'query_terms.csv' is your file
 query = create_query_from_csv("query_terms.csv")
-print(query)
+
+# Write the generated query to query.py
+write_query_to_py_file(query)
