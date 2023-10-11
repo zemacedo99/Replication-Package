@@ -25,7 +25,7 @@ def filter_after_agile_manifesto_date(df):
     # Filter rows where Publication Year is 2001 or later
     return df[df['Publication Year'] >= 2001]
 
-def process_and_save_result(result, data_base, folder_name="data_results"):
+def process_and_save_result(result, data_base, folder_name):
     """
     Transforms data into a DataFrame, marks the source of each row, and saves to CSV.
 
@@ -65,9 +65,9 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
-    scopus_df = process_and_save_result(scopus_results, "Scopus")
-    ieee_df = process_and_save_result(ieee_results, "IEEE")
-    engineering_village_df = process_and_save_result(engineering_village_results, "Engineering Village")
+    scopus_df = process_and_save_result(scopus_results, "Scopus",folder_name)
+    ieee_df = process_and_save_result(ieee_results, "IEEE",folder_name)
+    engineering_village_df = process_and_save_result(engineering_village_results, "Engineering Village",folder_name)
 
 
     # Combine the DataFrames

@@ -37,4 +37,4 @@ def data_analysis(filename):
 
 
 if __name__ == "__main__":
-    data_analysis("ReplicationPackage/data_results/unique_results.csv")
+    data_analysis("data_results/unique_results.csv")

@@ -6,24 +6,25 @@ This project aims to retrieve scholarly article information from multiple source
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/zemacedo99/Thesis.git
-    cd replication-package/
+    git clone https://github.com/zemacedo99/Replication-Package.git
+    ```
+2. **Install Required Packages**:
+    ```bash
+    pip install -r requirements.txt
     ```
 
-2. **Setup API Keys**:
+3. **Setup API Keys**:
     - Obtain your API keys from:
       - [Scopus API Provider](LINK_TO_SCOPUS_PROVIDER)
       - [IEEE Xplore API Provider](LINK_TO_IEEE_PROVIDER)
       - [Engineering Village API Provider](LINK_TO_EV_PROVIDER)
+    ```bash
+    cd src/
+    ```
     - Rename `config_template.py` to `config.py`.
     - Open `config.py` and replace placeholders (e.g., `YOUR_SCOPUS_API_KEY_HERE`, `YOUR_IEEE_API_KEY_HERE`, `YOUR_EV_API_KEY_HERE`) with the respective API keys.
    
    **Note**: The `config.py` file contains sensitive information (your API keys) and is gitignored to ensure it isn't accidentally committed to the repository. Always ensure you don't manually add this file to version control.
-
-3. **Install Required Packages**:
-    ```bash
-    pip install -r requirements.txt
-    ```
 
 4. **Run the Application**:
     ```bash

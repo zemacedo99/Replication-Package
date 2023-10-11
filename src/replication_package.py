@@ -1,7 +1,7 @@
-from scopus_search import search_scopus, scopus_extract_information 
-from ieee_search import search_ieee, extract_ieee_information
-from inspec_search import search_engineering_village, engineering_village_extract_information
-from data_process import process_and_save_results
+from search.scopus_search import search_scopus, scopus_extract_information 
+from search.ieee_search import search_ieee, extract_ieee_information
+from search.inspec_search import search_engineering_village, engineering_village_extract_information
+from data.data_process import process_and_save_results
 try:
     from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY
 except ImportError:
