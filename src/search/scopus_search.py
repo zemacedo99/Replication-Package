@@ -1,4 +1,8 @@
 import requests
+try:
+    from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN
+except ImportError:
+    raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 def search_scopus(query, api_key, inst_token, start=0, count=25):
     base_url = "https://api.elsevier.com/content/search/scopus"
@@ -58,13 +62,11 @@ def scopus_extract_information(data):
     return extracted
 
 
-# if __name__ == "__main__":
-#     ELSEVIER_API_KEY = "c803f556d065be19b3905ccee12adbfa" 
-#     ELSEVIER_INST_TOKEN = "35634be89c56c9527b9c35034e7b9cab"
-#     query = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace" 
+if __name__ == "__main__":
+    query = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace" 
         
-#     start_index = 0
-#     PAGE_SIZE = 25
-#     results = search_scopus(query, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, start=start_index, count=PAGE_SIZE)
+    start_index = 0
+    PAGE_SIZE = 25
+    results = search_scopus(query, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, start=start_index, count=PAGE_SIZE)
 
-#     print(results)
+    print(results)

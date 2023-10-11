@@ -1,4 +1,8 @@
 import requests
+try:
+    from config import IEEE_API_KEY
+except ImportError:
+    raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 def search_ieee(query, api_key, start_record=1, max_records=25):
     base_url = "http://ieeexploreapi.ieee.org/api/v1/search/articles"
@@ -49,7 +53,6 @@ def extract_ieee_information(data):
     return extracted
 
 if __name__ == "__main__":
-    IEEE_API_KEY = "vcahw7f4hxwxrv8kdapvyhnv"
     query = "Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace" 
         
     start_index = 0
