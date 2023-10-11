@@ -1,6 +1,6 @@
 # Replication Package
 
-This project aims to retrieve scholarly article information from multiple sources like Scopus, IEEE Xplore, and Engineering Village (Inspec). It efficiently extracts details such as titles, authors, publication years, venues, and links to the articles.
+This project aims to retrieve scholarly article information from multiple sources like Scopus, IEEE Xplore, and Engineering Village (Inspec). It efficiently extracts details such as titles, authors, publication years, venues, venues types, and links to the articles.
 
 ## Setup and Installation
 
@@ -15,9 +15,9 @@ This project aims to retrieve scholarly article information from multiple source
 
 3. **Setup API Keys**:
     - Obtain your API keys from:
-      - [Scopus API Provider](LINK_TO_SCOPUS_PROVIDER)
-      - [IEEE Xplore API Provider](LINK_TO_IEEE_PROVIDER)
-      - [Engineering Village API Provider](LINK_TO_EV_PROVIDER)
+      - [Scopus API Provider](https://dev.elsevier.com/apikey/manage)
+      - [IEEE Xplore API Provider](https://developer.ieee.org/member/register)
+      - [Engineering Village API Provider](https://dev.elsevier.com/apikey/manage)
     ```bash
     cd src/
     ```
