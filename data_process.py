@@ -25,7 +25,7 @@ def filter_after_agile_manifesto_date(df):
     # Filter rows where Publication Year is 2001 or later
     return df[df['Publication Year'] >= 2001]
 
-def process_and_save_result(result, data_base, folder_name="ReplicationPackage/data_results"):
+def process_and_save_result(result, data_base, folder_name="data_results"):
     """
     Transforms data into a DataFrame, marks the source of each row, and saves to CSV.
 
@@ -47,7 +47,7 @@ def process_and_save_result(result, data_base, folder_name="ReplicationPackage/d
     return df
 
 
-def process_and_save_results(scopus_results, ieee_results, engineering_village_results, folder_name="ReplicationPackage/data_results"):
+def process_and_save_results(scopus_results, ieee_results, engineering_village_results, folder_name="data_results"):
     """
     Combines data from Scopus, IEEE, and Engineering Village, creates two CSVs: 
     one for unique results and another for repeated results.
