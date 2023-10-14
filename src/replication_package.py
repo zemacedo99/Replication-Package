@@ -26,7 +26,7 @@ if __name__ == "__main__":
     PAGE_SIZE = 25
 
     while ((scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data) and start_index < 100):
-        print(f"Fetching results starting from index {start_index}...")
+        print(f"\nFetching results starting from index {start_index}...")
 
         # Scopus search
         if scopus_more_data:

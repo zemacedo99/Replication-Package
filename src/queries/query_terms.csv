@@ -1,24 +1,56 @@
 Category,Term
-Main terms,Agile
-Main terms,safety-critical
-Main terms,domains
-Main terms,standards
 Safety-critical keywords,Safety
-Safety-critical keywords,Safety-Systems
+Safety-critical keywords,Safety-Critical
+Safety-critical keywords,Safety Critical
 Safety-critical keywords,Safety-Critical Systems
+Safety-critical keywords,Safety Critical Systems
 Safety-critical keywords,High Integrity
 Safety-critical keywords,High Integrity Systems
 Safety-critical keywords,HIS
 Safety-critical keywords,Safety Integrity
+Safety-critical keywords,Safety-Systems
+Safety-critical keywords,Safety Systems
 Agile keywords,Agile
+Agile keywords,Agility
 Agile keywords,Scrum
 Agile keywords,Kanban
+Agile keywords,Scrumban
+Agile keywords,SafeScrum
+Agile keywords,AgileSafe
+Agile keywords,Agile Safe
 Agile keywords,XP
+Agile keywords,Extreme Programming
+Agile keywords,Large-Scale Scrum
+Agile keywords,LeSS
+Agile keywords,Scrum@Scale
+Agile keywords,SaS
+Agile keywords,Disciplined Agile Delivery
+Agile keywords,DAD
 Safety domains,aerospace
-Safety domains,aeronautic
+Safety domains,avionic
 Safety domains,avionics
-Safety domains,railway
-Standards,DO-178C
-Standards,DO-178B
+Safety domains,aviation
+Safety domains,aeronautic
+Safety domains,aeronautics
+Safety domains,aeronautical
 Standards,ARP4761
-Standards,EN50128
+Standards,ARP 4761
+Standards,ARP4754
+Standards,ARP 4754
+Standards,ARP4754A
+Standards,ARP 4754A
+Standards,DO-178
+Standards,DO 178
+Standards,DO178
+Standards,DO-178C
+Standards,DO 178C
+Standards,DO178C
+Standards,DO-178B
+Standards,DO 178B
+Standards,DO178B
+Standards,DO 331
+Standards,DO331
+Standards,DO-331
+Standards,DO-297
+Standards,DO 297
+Standards,DO297
