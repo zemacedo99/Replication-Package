@@ -5,6 +5,8 @@ except ImportError:
     raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 def search_scopus(query, api_key, inst_token, start=0, count=25):
+    print("\nQuerying Scopus")
+
     base_url = "https://api.elsevier.com/content/search/scopus"
     
     headers = {
@@ -59,6 +61,7 @@ def scopus_extract_information(data):
             'Link': scopus_link
         })
     
+    print(f"Fetched {len(extracted)} results from Scopus.")
     return extracted
 
 

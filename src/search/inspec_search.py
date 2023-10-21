@@ -5,6 +5,7 @@ except ImportError:
     raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 def search_engineering_village(query, api_key, inst_token, start=0, count=25):
+    print("\nQuerying Engineering Village")
 
     url = "https://api.elsevier.com/content/ev/results"
     
@@ -69,7 +70,8 @@ def engineering_village_extract_information(data):
             'Authors': author_names,
             'Link': link
         })
-    
+        
+    print(f"Fetched {len(extracted)} results from Engineering Village.")
     return extracted
 
 if __name__ == "__main__":

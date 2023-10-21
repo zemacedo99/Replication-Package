@@ -6,6 +6,7 @@ except ImportError:
     raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 def search_science_direct(query, api_key, inst_token, start=0, count=25):
+    print("\nQuerying Science Direct")
 
     url = "https://api.elsevier.com/content/search/sciencedirect"
     
@@ -49,6 +50,7 @@ def extract_science_direct_information(data):
             'Link': link
         })
 
+    print(f"Fetched {len(extracted)} results from Science Direct.")
     return extracted
 
 if __name__ == "__main__":

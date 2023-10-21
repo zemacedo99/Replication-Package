@@ -5,6 +5,8 @@ except ImportError:
     raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
 def search_ieee(query, api_key, start_record=1, max_records=25):
+    print("\nQuerying IEEE Xplore")
+
     base_url = "http://ieeexploreapi.ieee.org/api/v1/search/articles"
     
     headers = {
@@ -49,7 +51,8 @@ def extract_ieee_information(data):
             'Authors': ', '.join(authors_names),
             'Link': link
         })
-    
+        
+    print(f"Fetched {len(extracted)} results from IEEE Xplore.")
     return extracted
 
 if __name__ == "__main__":
