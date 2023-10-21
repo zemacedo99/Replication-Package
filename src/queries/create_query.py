@@ -30,6 +30,7 @@ def write_query_to_py_file(query):
         f.write(f'SCIENCE_DIRECT_QUERY = \'{query}\'\n')
         f.write(f'HAL_OPEN_SCIENCE_QUERY = \'{query}\'\n')
         f.write(f'ACM_DIGITAL_LIBRARY_QUERY = \'{query}\'\n')
+        f.write(f'SPRINGER_NATURE_QUERY = \'{query}\'\n')
 
 # Assuming 'query_terms.csv' is your file
 query = create_query_from_csv("query_terms.csv")

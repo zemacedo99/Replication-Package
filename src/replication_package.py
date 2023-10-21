@@ -5,9 +5,10 @@ from search.scopus_search import search_scopus, scopus_extract_information
 from search.ieee_search import search_ieee, extract_ieee_information
 from search.inspec_search import search_engineering_village, engineering_village_extract_information
 from search.hal_open_science_search import search_hal_open_science, extract_hal_open_science_information
-from queries.query import ACM_DIGITAL_LIBRARY_QUERY, ENGINEERING_VILLAGE_QUERY, IEEE_QUERY, SCIENCE_DIRECT_QUERY, SCOPUS_QUERY, HAL_OPEN_SCIENCE_QUERY
+from search.springer_nature_search import extract_springer_nature_information, search_springer_nature
+from queries.query import ACM_DIGITAL_LIBRARY_QUERY, ENGINEERING_VILLAGE_QUERY, IEEE_QUERY, SCIENCE_DIRECT_QUERY, SCOPUS_QUERY, HAL_OPEN_SCIENCE_QUERY, SPRINGER_NATURE_QUERY
 try:
-    from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY
+    from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY, SPRINGER_API_KEY
 except ImportError:
     raise ImportError("config.py not found. Please set up your API key as instructed in README.md")
 
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     science_direct_results = []
     hal_open_science_results = []
     acm_digital_library_results = []
+    springer_nature_results = []
 
     # Initialize flag variables to control the loop
     scopus_more_data = True
@@ -27,8 +29,9 @@ if __name__ == "__main__":
     science_direct_more_data = True
     hal_open_science_more_data = True
     acm_digital_library_more_data = True
+    springer_nature_more_data = True
     
-    more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data or acm_digital_library_more_data
+    more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data or acm_digital_library_more_data or springer_nature_more_data
     
     start_index = 0
     PAGE_SIZE = 25
@@ -95,9 +98,18 @@ if __name__ == "__main__":
             else:
                 print("No more results from ACM Digital Library.")
                 acm_digital_library_more_data = False
+        
+        # Springer Nature search
+        if springer_nature_more_data:
+            springer_nature_data = search_springer_nature(SPRINGER_NATURE_QUERY, SPRINGER_API_KEY, start=start_index, count=PAGE_SIZE)
+            if springer_nature_data['records']:
+                springer_nature_info = extract_springer_nature_information(springer_nature_data)
+                springer_nature_results.extend(springer_nature_info)
+            else:
+                print("No more results from Springer Nature.")
+                springer_nature_more_data = False
 
-        more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data or acm_digital_library_more_data
+        more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data or acm_digital_library_more_data or springer_nature_more_data
         start_index += PAGE_SIZE
 
-
-    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results,acm_digital_library_results)
+    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results,acm_digital_library_results,springer_nature_results)

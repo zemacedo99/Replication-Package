@@ -47,7 +47,7 @@ def process_and_save_result(result, data_base, folder_name):
     return df
 
 
-def process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results, hal_open_science_results, acm_digital_library_results, folder_name="data_results"):
+def process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results, hal_open_science_results, acm_digital_library_results, springer_nature_results, folder_name="data_results"):
     """
     Combines data from Scopus, IEEE, and Engineering Village, creates two CSVs: 
     one for unique results and another for repeated results.
@@ -72,9 +72,10 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     science_direct_df = process_and_save_result(science_direct_results, "Science Direct",folder_name)
     hal_open_science_results_df = process_and_save_result(hal_open_science_results, "Hal Open Science",folder_name)
     acm_digital_library_results_df = process_and_save_result(acm_digital_library_results, "ACM Digital Library",folder_name)
+    springer_nature_results_df = process_and_save_result(springer_nature_results, "Springer Nature",folder_name)
 
     # Combine the DataFrames
-    all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df,science_direct_df, hal_open_science_results_df,acm_digital_library_results_df], ignore_index=True, sort=False)
+    all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df,science_direct_df, hal_open_science_results_df,acm_digital_library_results_df,springer_nature_results_df], ignore_index=True, sort=False)
 
     # Create the processed title
     all_results_df['ProcessedTitle'] = all_results_df['Title'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~` |\\]+', '', regex=True)

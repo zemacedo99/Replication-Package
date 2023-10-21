@@ -83,13 +83,14 @@ sudo apt install python3-pip
 5. **Setup API Keys**:
     - Obtain your API keys from:
       - [IEEE Xplore API Provider](https://developer.ieee.org/member/register)
+      - [Springer Nature API Provider](https://dev.springernature.com/)
       - [Elsevier API Provider](https://dev.elsevier.com/apikey/manage) *Works for Scopus, Engineering Village (Inspec) and ScienceDirect*
 
 6. **Navigate to the source code**:
     ```bash
     cd src/
     ```
-    - Rename `config_template.py` to `config.py`.
+    - Rename `config_template.py` inside the search folder to `config.py`.
     - Open `config.py` and replace placeholders (e.g., `YOUR_SCOPUS_API_KEY_HERE`, `YOUR_IEEE_API_KEY_HERE`, `YOUR_EV_API_KEY_HERE`) with the respective API keys.
    
    **Note**: The `config.py` file contains sensitive information (your API keys) and is gitignored to ensure it isn't accidentally committed to the repository. Always ensure you don't manually add this file to version control.
