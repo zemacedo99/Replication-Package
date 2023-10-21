@@ -2,3 +2,4 @@ __pycache__/
 config.py
 /data_results
 /src/data_results
+myenv/
