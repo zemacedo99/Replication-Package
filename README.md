@@ -46,24 +46,6 @@ Using your distribution's package manager, you can install pip. For example, on 
 sudo apt install python3-pip
 ```
 
-### Virtual Environment Setup (Windows)
-
-It's recommended to use a virtual environment to avoid package conflicts between projects. If you're on Windows, here's how to set it up:
-
-1. Navigate to your project directory.
-2. Create a virtual environment: 
-   ```bash
-   python -m venv myenv
-   ```
-3. Activate the virtual environment:
-   ```bash
-   .\myenv\Scripts\Activate
-   ```
-4. When done, deactivate with:
-   ```bash
-   deactivate
-   ```
-
 ## Setup and Installation
 
 1. **Clone the Repository**:
@@ -75,6 +57,23 @@ It's recommended to use a virtual environment to avoid package conflicts between
     ```bash
     cd Replication-Package
     ```
+
+3. **Virtual Environment Setup (Windows)**
+
+    It's recommended to use a virtual environment to avoid package conflicts between projects. If you're on Windows, here's how to set it up:
+
+    1. Create a virtual environment: 
+        ```bash
+        python -m venv myenv
+        ```
+    2. Activate the virtual environment:
+        ```bash
+        .\myenv\Scripts\Activate
+        ```
+    3. When done, deactivate with:
+        ```bash
+        deactivate
+        ```
 
 3. **Install Required Packages**:
     ```bash
