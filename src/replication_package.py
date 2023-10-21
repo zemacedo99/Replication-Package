@@ -1,10 +1,11 @@
 from data.data_process import process_and_save_results
+from search.acm_digital_library_search import extract_acm_digital_library_information, search_acm_digital_library
 from search.scienceDirect_search import extract_science_direct_information, search_science_direct
 from search.scopus_search import search_scopus, scopus_extract_information 
 from search.ieee_search import search_ieee, extract_ieee_information
 from search.inspec_search import search_engineering_village, engineering_village_extract_information
 from search.hal_open_science_search import search_hal_open_science, extract_hal_open_science_information
-from queries.query import ENGINEERING_VILLAGE_QUERY, IEEE_QUERY, SCIENCE_DIRECT_QUERY, SCOPUS_QUERY, HAL_OPEN_SCIENCE_QUERY
+from queries.query import ACM_DIGITAL_LIBRARY_QUERY, ENGINEERING_VILLAGE_QUERY, IEEE_QUERY, SCIENCE_DIRECT_QUERY, SCOPUS_QUERY, HAL_OPEN_SCIENCE_QUERY
 try:
     from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY
 except ImportError:
@@ -17,6 +18,7 @@ if __name__ == "__main__":
     engineering_village_results = []
     science_direct_results = []
     hal_open_science_results = []
+    acm_digital_library_results = []
 
     # Initialize flag variables to control the loop
     scopus_more_data = True
@@ -24,8 +26,9 @@ if __name__ == "__main__":
     engineering_village_more_data = True
     science_direct_more_data = True
     hal_open_science_more_data = True
+    acm_digital_library_more_data = True
     
-    more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data
+    more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data or acm_digital_library_more_data
     
     start_index = 0
     PAGE_SIZE = 25
@@ -83,8 +86,18 @@ if __name__ == "__main__":
                 print("No more results from Hal Open Science.")
                 hal_open_science_more_data = False
 
-        more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data
+        # ACM Digital Library search
+        if acm_digital_library_more_data:
+            acm_digital_library_data = search_acm_digital_library(ACM_DIGITAL_LIBRARY_QUERY, start=start_index, count=PAGE_SIZE)
+            if acm_digital_library_data and acm_digital_library_data['message']['total-results'] > 0 and len(acm_digital_library_data['message']['items']) > 0:
+                acm_digital_library_info = extract_acm_digital_library_information(acm_digital_library_data)
+                acm_digital_library_results.extend(acm_digital_library_info)
+            else:
+                print("No more results from ACM Digital Library.")
+                acm_digital_library_more_data = False
+
+        more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data or acm_digital_library_more_data
         start_index += PAGE_SIZE
 
 
-    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results)
+    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results,acm_digital_library_results)

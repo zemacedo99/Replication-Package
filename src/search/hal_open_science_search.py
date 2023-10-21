@@ -3,7 +3,7 @@ import bibtexparser
 
 
 def search_hal_open_science(query, start=0, count=25):
-    print("\nQuerying Hal Open Science for BibTeX results")
+    print("\nQuerying Hal Open Science")
 
     url = "https://api.archives-ouvertes.fr/search/"
     
