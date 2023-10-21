@@ -26,15 +26,18 @@ def publication_venue_type_distribution(df):
     plt.show()
 
 def publication_source_distribution(df):
+    # Split and flatten the sources list
+    all_sources = df['Source'].str.split(',').explode()
 
-    # Filter out sources with a comma
-    filtered_df = df[df['Source'].apply(lambda x: ',' not in str(x))]
+    # Remove any leading or trailing spaces that might be present after splitting
+    all_sources = all_sources.str.strip()
 
     # Get the order of sources from most frequent to least frequent
-    order_sources = filtered_df['Source'].value_counts().index
+    order_sources = all_sources.value_counts().index
 
-    plt.figure(figsize=(8, 6))
-    sns.countplot(data=filtered_df, y='Source', palette="viridis", order=order_sources)
+    # Plotting
+    plt.figure(figsize=(10, 8))
+    sns.countplot(y=all_sources, palette="viridis", order=order_sources)
     plt.title('Publication Source Distribution')
     plt.tight_layout()
     plt.show()
