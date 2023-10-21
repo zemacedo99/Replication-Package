@@ -1,6 +1,6 @@
 # Replication Package
 
-This project aims to retrieve scholarly article information from multiple sources like Scopus, IEEE Xplore, and Engineering Village (Inspec). It efficiently extracts details such as titles, authors, publication years, venues, venue types, and links to the articles.
+This project aims to retrieve scholarly article information from a variety of sources including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, and the ACM Digital Library via Crossref. It allows for efficient extraction of details such as titles, authors, publication years, venues, venue types, and links to the articles. Furthermore, it provides functionality to create queries from a CSV containing search terms and to visualize the processed data.
 
 ## Prerequisites
 
@@ -75,18 +75,17 @@ sudo apt install python3-pip
         deactivate
         ```
 
-3. **Install Required Packages**:
+4. **Install Required Packages**:
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Setup API Keys**:
+5. **Setup API Keys**:
     - Obtain your API keys from:
-      - [Scopus API Provider](https://dev.elsevier.com/apikey/manage)
       - [IEEE Xplore API Provider](https://developer.ieee.org/member/register)
-      - [Engineering Village API Provider](https://dev.elsevier.com/apikey/manage)
+      - [Elsevier API Provider](https://dev.elsevier.com/apikey/manage) *Works for Scopus, Engineering Village (Inspec) and ScienceDirect*
 
-5. **Navigate to the source code**:
+6. **Navigate to the source code**:
     ```bash
     cd src/
     ```
@@ -95,23 +94,33 @@ sudo apt install python3-pip
    
    **Note**: The `config.py` file contains sensitive information (your API keys) and is gitignored to ensure it isn't accidentally committed to the repository. Always ensure you don't manually add this file to version control.
 
-6. **Run the Application**:
+7. **Run the Application**:
     ```bash
     python replication_package.py
     ```
-7. **Troubleshooting**:
+8. **Troubleshooting**:
     - Ensure you're using a compatible version of Python and pip. Check using `python --version` and `pip --version`.
     - Consider using a virtual environment like `venv` to avoid package conflicts.
     - If a specific package causes an error, try installing it separately using `pip install <package-name>`.
     - For SSL or proxy issues, try: `pip install --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host=files.pythonhosted.org -r requirements.txt`.
     - If all else fails, check the internet connection, ensure [PyPI](https://pypi.org/) is accessible, and look for specific error messages for more detailed guidance.
+    - **Institutional Restrictions:** If you're unable to run the application due to restrictions from your institution's internet connection or VPN, consider obtaining an institutional token from the API Provider support.
     
 ## Features
 
-- **Scopus Integration**: Extracts article information including titles, publication years, venues, authors, and article links from Scopus.
-- **IEEE Xplore Integration**: Retrieves article details from the IEEE digital library.
-- **Engineering Village (Inspec) Integration**: Gathers scholarly article information from the Engineering Village database.
-- **Error Handling**: Gracefully handles potential issues during data retrieval and extraction, ensuring consistent results.
+- **Multiple Data Sources Integration:** 
+    - **Scopus** 
+    - **IEEE Xplore** 
+    - **Engineering Village (Inspec)** 
+    - **Science Direct** 
+    - **HAL Open Science** 
+    - **ACM Digital Library via Crossref** 
+
+- **CSV-based Queries:** The ability to create a search query from a CSV file with terms, streamlining the process of bulk or complex searches.
+
+- **Data Visualization:** After gathering and processing the data, the project offers functionality for its visualization, providing insights and easy-to-understand graphics.
+
+- **Error Handling:** Gracefully handles potential issues during data retrieval and extraction, ensuring consistent results.
 
 ## Contributing
 
