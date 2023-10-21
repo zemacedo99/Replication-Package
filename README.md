@@ -80,20 +80,13 @@ sudo apt install python3-pip
     pip install -r requirements.txt
     ```
 
-4. **Troubleshooting Package Installation**:
-    - Ensure you're using a compatible version of Python and pip. Check using `python --version` and `pip --version`.
-    - Consider using a virtual environment like `venv` to avoid package conflicts.
-    - If a specific package causes an error, try installing it separately using `pip install <package-name>`.
-    - For SSL or proxy issues, try: `pip install --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host=files.pythonhosted.org -r requirements.txt`.
-    - If all else fails, check the internet connection, ensure [PyPI](https://pypi.org/) is accessible, and look for specific error messages for more detailed guidance.
-
-5. **Setup API Keys**:
+4. **Setup API Keys**:
     - Obtain your API keys from:
       - [Scopus API Provider](https://dev.elsevier.com/apikey/manage)
       - [IEEE Xplore API Provider](https://developer.ieee.org/member/register)
       - [Engineering Village API Provider](https://dev.elsevier.com/apikey/manage)
 
-6. **Navigate to the source code**:
+5. **Navigate to the source code**:
     ```bash
     cd src/
     ```
@@ -102,11 +95,17 @@ sudo apt install python3-pip
    
    **Note**: The `config.py` file contains sensitive information (your API keys) and is gitignored to ensure it isn't accidentally committed to the repository. Always ensure you don't manually add this file to version control.
 
-7. **Run the Application**:
+6. **Run the Application**:
     ```bash
     python replication_package.py
     ```
-
+7. **Troubleshooting**:
+    - Ensure you're using a compatible version of Python and pip. Check using `python --version` and `pip --version`.
+    - Consider using a virtual environment like `venv` to avoid package conflicts.
+    - If a specific package causes an error, try installing it separately using `pip install <package-name>`.
+    - For SSL or proxy issues, try: `pip install --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host=files.pythonhosted.org -r requirements.txt`.
+    - If all else fails, check the internet connection, ensure [PyPI](https://pypi.org/) is accessible, and look for specific error messages for more detailed guidance.
+    
 ## Features
 
 - **Scopus Integration**: Extracts article information including titles, publication years, venues, authors, and article links from Scopus.
