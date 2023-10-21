@@ -30,7 +30,7 @@ if __name__ == "__main__":
     start_index = 0
     PAGE_SIZE = 25
 
-    while (more_data and start_index < 100):
+    while (more_data and start_index <= 300):
         print(f"\n\nFetching results starting from index {start_index}")
 
         # Scopus search
@@ -88,9 +88,3 @@ if __name__ == "__main__":
 
 
     process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results)
-
-
-
-# TODO: Analyzing the data
-# TODO: Filtering results by year, journal, etc.
-# TODO: Processing and analyzing the retrieved data further, create chards and graphs
