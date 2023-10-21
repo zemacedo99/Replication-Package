@@ -76,28 +76,29 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     # Combine the DataFrames
     all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df,science_direct_df, hal_open_science_results_df], ignore_index=True, sort=False)
 
+    # Create the processed title
+    all_results_df['ProcessedTitle'] = all_results_df['Title'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~` |\\]+', '', regex=True)
+
     # Save all results to a CSV
     all_results_df.to_csv(os.path.join(folder_name,"all_results.csv"), index=False)
 
     # Group by Title and aggregate the sources
-    source_agg = all_results_df.groupby('Title')['Source'].apply(lambda x: ', '.join(x)).reset_index()
+    source_agg = all_results_df.groupby('ProcessedTitle')['Source'].apply(lambda x: ', '.join(x)).reset_index()
 
     # Merge this aggregated source with the original dataframe
-    all_results_df = all_results_df.drop('Source', axis=1).merge(source_agg, on='Title', how='left')
-
-    # Extract rows which are duplicated in Title
-    duplicated_df = all_results_df[all_results_df.duplicated(subset='Title', keep=False)].drop_duplicates(subset='Title', keep='first')
-
-    # Save the duplicates to a CSV
-    duplicated_df.to_csv(os.path.join(folder_name,"repeated.csv"), index=False)
+    all_results_df = all_results_df.drop('Source', axis=1).merge(source_agg, on='ProcessedTitle', how='left')
 
     # Drop duplicates from the all_results_df to only keep the first occurrence
-    unique_results_df = all_results_df.drop_duplicates(subset='Title', keep='first')
+    unique_results_df = all_results_df.drop_duplicates(subset='ProcessedTitle', keep='first')
 
     # Process unique_results_df using the filter_after_agile_manifesto_date function
     unique_results_df = filter_after_agile_manifesto_date(unique_results_df)
 
     # Save the unique results to CSV
     unique_results_df.to_csv(os.path.join(folder_name,"unique_results.csv"), index=False)
-    
 
+    # Drop duplicates using the processed title
+    duplicated_df = all_results_df[all_results_df.duplicated(subset='ProcessedTitle', keep=False)].drop_duplicates(subset='ProcessedTitle', keep='first')
+
+    # Save the duplicates to a CSV
+    duplicated_df.to_csv(os.path.join(folder_name,"repeated.csv"), index=False)
