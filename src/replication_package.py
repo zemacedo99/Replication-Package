@@ -1,9 +1,10 @@
+from data.data_process import process_and_save_results
 from search.scienceDirect_search import extract_science_direct_information, search_science_direct
 from search.scopus_search import search_scopus, scopus_extract_information 
 from search.ieee_search import search_ieee, extract_ieee_information
 from search.inspec_search import search_engineering_village, engineering_village_extract_information
-from data.data_process import process_and_save_results
-from queries.query import ENGINEERING_VILLAGE_QUERY, IEEE_QUERY, SCIENCE_DIRECT_QUERY, SCOPUS_QUERY
+from search.hal_open_science_search import search_hal_open_science, extract_hal_open_science_information
+from queries.query import ENGINEERING_VILLAGE_QUERY, IEEE_QUERY, SCIENCE_DIRECT_QUERY, SCOPUS_QUERY, HAL_OPEN_SCIENCE_QUERY
 try:
     from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN, IEEE_API_KEY
 except ImportError:
@@ -14,18 +15,22 @@ if __name__ == "__main__":
     scopus_results = []
     ieee_results = []
     engineering_village_results = []
-    science_direct_results =[]
+    science_direct_results = []
+    hal_open_science_results = []
 
     # Initialize flag variables to control the loop
     scopus_more_data = True
     ieee_more_data = True
     engineering_village_more_data = True
     science_direct_more_data = True
+    hal_open_science_more_data = True
+    
+    more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data
     
     start_index = 0
     PAGE_SIZE = 25
 
-    while ((scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data) and start_index < 100):
+    while (more_data and start_index < 100):
         print(f"\n\nFetching results starting from index {start_index}")
 
         # Scopus search
@@ -68,10 +73,21 @@ if __name__ == "__main__":
                 print("No more results from Science Direct.")
                 science_direct_more_data = False
 
+        # Hal Open Science search
+        if hal_open_science_more_data:
+            hal_open_science_data = search_hal_open_science(HAL_OPEN_SCIENCE_QUERY, start=start_index, count=PAGE_SIZE)
+            if hal_open_science_data:
+                hal_open_science_info = extract_hal_open_science_information(hal_open_science_data)
+                hal_open_science_results.extend(hal_open_science_info)
+            else:
+                print("No more results from Hal Open Science.")
+                hal_open_science_more_data = False
+
+        more_data = scopus_more_data or ieee_more_data or engineering_village_more_data or science_direct_more_data or hal_open_science_more_data
         start_index += PAGE_SIZE
 
 
-    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results)
+    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results)
 
 
 

@@ -27,6 +27,7 @@ def write_query_to_py_file(query):
         f.write(f'IEEE_QUERY = \'{query}\'\n')
         f.write(f'ENGINEERING_VILLAGE_QUERY = \'{query}\'\n')
         f.write(f'SCIENCE_DIRECT_QUERY = \'{query}\'\n')
+        f.write(f'HAL_OPEN_SCIENCE_QUERY = \'{query}\'\n')
 
 # Assuming 'query_terms.csv' is your file
 query = create_query_from_csv("query_terms.csv")

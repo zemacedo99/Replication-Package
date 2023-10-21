@@ -47,7 +47,7 @@ def process_and_save_result(result, data_base, folder_name):
     return df
 
 
-def process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results, folder_name="data_results"):
+def process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results, hal_open_science_results, folder_name="data_results"):
     """
     Combines data from Scopus, IEEE, and Engineering Village, creates two CSVs: 
     one for unique results and another for repeated results.
@@ -70,10 +70,11 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     ieee_df = process_and_save_result(ieee_results, "IEEE",folder_name)
     engineering_village_df = process_and_save_result(engineering_village_results, "Engineering Village",folder_name)
     science_direct_df = process_and_save_result(science_direct_results, "Science Direct",folder_name)
+    hal_open_science_results_df = process_and_save_result(hal_open_science_results, "Hal Open Science",folder_name)
 
 
     # Combine the DataFrames
-    all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df,science_direct_df], ignore_index=True, sort=False)
+    all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df,science_direct_df, hal_open_science_results_df], ignore_index=True, sort=False)
 
     # Save all results to a CSV
     all_results_df.to_csv(os.path.join(folder_name,"all_results.csv"), index=False)
