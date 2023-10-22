@@ -40,6 +40,7 @@ def extract_acm_digital_library_information(response_json):
     if 'message' in response_json and 'items' in response_json['message']:
         for entry in response_json['message']['items']:
             title = entry.get('title', [None])[0]  
+            title = title.replace("\n", " ").replace("\r", "").strip()
             # doi = entry.get('DOI')
 
             # Convert publication year to int

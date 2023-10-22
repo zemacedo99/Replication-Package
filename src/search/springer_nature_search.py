@@ -34,11 +34,18 @@ def extract_springer_nature_information(data):
 
     for record in records:
         title = record.get('title')
+        title = title.replace("\n", " ").replace("\r", "").strip()
         publication_year = record.get('publicationDate', '').split('-')[0]  # Extract year from publicationDate
         venue = record.get('publicationName')
         venue_type = record.get('contentType')
-        authors = [creator.get('creator') for creator in record.get('creators', [])]
-        link = record.get('url')
+
+        # Convert the list of authors to a single string, separated by commas
+        authors_list = [creator.get('creator') for creator in record.get('creators', [])]
+        authors = ', '.join(authors_list)
+
+        # Extract the link value
+        link_data = record.get('url', [])
+        link = link_data[0].get('value') if isinstance(link_data, list) and len(link_data) > 0 else None
 
         extracted.append({
             'Title': title,
@@ -49,8 +56,9 @@ def extract_springer_nature_information(data):
             'Link': link
         })
 
-    print(f"Fetched {len(extracted)} results from Springer Nature.")
+    print(f"Fetched {len(extracted)} results from Springer Link.")
     return extracted
+
 
 if __name__ == "__main__":
     query = "example"
