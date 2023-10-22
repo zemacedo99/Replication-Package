@@ -50,12 +50,12 @@ def publication_authors_distribution(df):
     all_authors = all_authors.str.strip()
 
     # Get the top 10 authors from most frequent to least frequent
-    top_authors_counts = all_authors.value_counts().head(10)
+    top_authors_counts = all_authors.value_counts().head(35)
 
     # Plotting using barplot instead of countplot
     plt.figure(figsize=(10, 8))
     sns.barplot(y=top_authors_counts.index, x=top_authors_counts.values, palette="viridis")
-    plt.title('Top 10 Publication Authors Distribution')
+    plt.title('Top 35 Publication Authors Distribution')
     plt.tight_layout()
     plt.show()
 
