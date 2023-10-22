@@ -1,6 +1,6 @@
 # Replication Package
 
-This project aims to retrieve scholarly article information from a variety of sources including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, and the ACM Digital Library via Crossref. It allows for efficient extraction of details such as titles, authors, publication years, venues, venue types, and links to the articles. Furthermore, it provides functionality to create queries from a CSV containing search terms and to visualize the processed data.
+This project aims to retrieve scholarly article information from a variety of sources including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, Springer Nature, and the ACM Digital Library via Crossref. It allows for efficient extraction of details such as titles, authors, publication years, venues, venue types, and links to the articles. Furthermore, it provides functionality to create queries from a CSV containing search terms and to visualize the processed data.
 
 ## Prerequisites
 
@@ -115,7 +115,8 @@ sudo apt install python3-pip
     - **Engineering Village (Inspec)** 
     - **Science Direct** 
     - **HAL Open Science** 
-    - **ACM Digital Library via Crossref** 
+    - **ACM Digital Library via Crossref**
+    - **Springer Nature** 
 
 - **CSV-based Queries:** The ability to create a search query from a CSV file with terms, streamlining the process of bulk or complex searches.
 
