@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 
+from utils import data_to_pdf
+
 def filter_after_agile_manifesto_date(df):
     """
     Removes rows from the DataFrame where the Publication Year is before 2001.
@@ -91,6 +93,9 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
 
     # Drop duplicates from the all_results_df to only keep the first occurrence
     unique_results_df = all_results_df.drop_duplicates(subset='ProcessedTitle', keep='first')
+
+    # unique_results_df['Venue'] = unique_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
+    data_to_pdf(unique_results_df, 'Venue')
 
     # Process unique_results_df using the filter_after_agile_manifesto_date function
     unique_results_df = filter_after_agile_manifesto_date(unique_results_df)

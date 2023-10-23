@@ -4,3 +4,5 @@ config.py
 /src/data_results/
 myenv/
 output.json
+*.pdf
+*.png
