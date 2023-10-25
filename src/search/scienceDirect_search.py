@@ -1,4 +1,9 @@
 import requests
+import sys
+import os
+root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, root_directory)
+from utils import write_pretty_json_to_file
 
 try:
     from config import ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN
@@ -54,9 +59,11 @@ def extract_science_direct_information(data):
     return extracted
 
 if __name__ == "__main__":
-    query = "docops"
+    QUERY = "scrum"
         
-    results = search_science_direct(query, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN)
+    results = search_science_direct(QUERY, ELSEVIER_API_KEY, ELSEVIER_INST_TOKEN)
+    print(results)
+    write_pretty_json_to_file(results,"output.json")
     data = extract_science_direct_information(results)
 
     for item in data:

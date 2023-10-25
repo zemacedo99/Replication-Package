@@ -1,6 +1,10 @@
 # from crossref.restful import Works
 import requests
-import json
+import sys
+import os
+root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, root_directory)
+from utils import write_pretty_json_to_file
 
 def search_acm_digital_library(query, start=0, count=25):
     """
@@ -74,9 +78,6 @@ def extract_acm_digital_library_information(response_json):
     print(f"Fetched {len(extracted)} results from ACM Digital Library.")
     return extracted
 
-def write_pretty_json_to_file(data, filename):
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
 
 if __name__ == "__main__":
     query = '("Agile" OR "Agility" OR "Scrum" OR "Kanban" OR "Scrumban" OR "SafeScrum" OR "AgileSafe" OR "Agile Safe" OR "XP" OR "Extreme Programming" OR "Large-Scale Scrum" OR "LeSS" OR "Scrum@Scale" OR "SaS" OR "Disciplined Agile Delivery" OR "DAD") AND ("aerospace" OR "avionic" OR "avionics" OR "aviation" OR "aeronautic" OR "aeronautics" OR "aeronautical") AND ("Safety" OR "Safety-Critical" OR "Safety Critical" OR "Safety-Critical Systems" OR "Safety Critical Systems" OR "High Integrity" OR "High Integrity Systems" OR "HIS" OR "Safety Integrity" OR "Safety-Systems" OR "Safety Systems") AND ("ARP4761" OR "ARP 4761" OR "ARP4754" OR "ARP 4754" OR "ARP4754A" OR "ARP 4754A" OR "DO-178" OR "DO 178" OR "DO178" OR "DO-178C" OR "DO 178C" OR "DO178C" OR "DO-178B" OR "DO 178B" OR "DO178B" OR "DO 331" OR "DO331" OR "DO-331" OR "DO-297" OR "DO 297" OR "DO297")'

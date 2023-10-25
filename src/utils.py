@@ -1,3 +1,4 @@
+import json
 import pandas as pd
 from fpdf import FPDF
 from wordcloud import WordCloud
@@ -92,13 +93,15 @@ def data_to_pdf(df, column):
     pdf.output(f"{column}_counts.pdf")
     print(f"PDF exported for {column}!")
 
+def write_pretty_json_to_file(data, filename):
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
 
 
-
-
-# Sample usage
-data = {
-    "Venues": ["VenueA", "VenueB", "VenueA", "VenueC", "VenueB", "VenueC", "VenueC"]
-}
-df_sample = pd.DataFrame(data)
-data_to_pdf(df_sample, "Venues")
+if __name__ == "__main__":
+    # Sample usage
+    data = {
+        "Venues": ["VenueA", "VenueB", "VenueA", "VenueC", "VenueB", "VenueC", "VenueC"]
+    }
+    df_sample = pd.DataFrame(data)
+    data_to_pdf(df_sample, "Venues")
