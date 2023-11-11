@@ -1,6 +1,8 @@
 # Replication Package
 
-This project aims to retrieve scholarly article information from a variety of sources including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, Springer Nature, and the ACM Digital Library via Crossref. It allows for efficient extraction of details such as titles, authors, publication years, venues, venue types, and links to the articles. Furthermore, it provides functionality to create queries from a CSV containing search terms and to visualize the processed data.
+This Replication Package effectively compiles scientific publications from multiple sources, including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, Springer Nature, and the ACM Digital Library. It utilizes Crossref for enhanced data integration.
+The package aids in extracting key details like titles, authors, years of publication, venues, and types of venues, as well as providing direct links to the articles.
+Moreover, it offers a feature to create a focused research query using specific terms from a CSV file. This solution is instrumental in refining search results by filtering out duplicates and omitting non-English publications. Additionally, the package supports the visual presentation of the data analyzed.
 
 ## Prerequisites
 
@@ -85,6 +87,7 @@ sudo apt install python3-pip
       - [IEEE Xplore API Provider](https://developer.ieee.org/member/register)
       - [Springer Nature API Provider](https://dev.springernature.com/)
       - [Elsevier API Provider](https://dev.elsevier.com/apikey/manage) *Works for Scopus, Engineering Village (Inspec) and ScienceDirect*
+      - *Setting up a key for accessing HAL Open Science and the ACM Digital Library is unnecessary.*
 
 6. **Navigate to the source code**:
     ```bash
@@ -118,13 +121,24 @@ sudo apt install python3-pip
     - **ACM Digital Library via Crossref**
     - **Springer Nature** 
 
-- **CSV-based Queries:** The ability to create a search query from a CSV file with terms, streamlining the process of bulk or complex searches.
+- **CSV-based Queries:** The ability to create a research query from a CSV file with terms.
 
-- **Data Visualization:** After gathering and processing the data, the project offers functionality for its visualization, providing insights and easy-to-understand graphics.
+- **Data Visualization:** After gathering and processing the data, the solution offers functionality for its visualization, providing insights and easy-to-understand graphics.
 
 - **Error Handling:** Gracefully handles potential issues during data retrieval and extraction, ensuring consistent results.
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. As the project interacts with various data sources, ensure any modifications don't disrupt the existing integrations.
+
+## Credits and Acknowledgments
+
+If you find this solution useful and decide to use it in your projects, please give appropriate credit to the original authors. We kindly request that you acknowledge the contributions of:
+
+- J. Eduardo Ferreira Ribeiro
+- J. Antonio Dantas Macedo
+
+Your support in crediting our work helps in promoting open and collaborative development. Thank you for respecting our contributions!
+
+
 
