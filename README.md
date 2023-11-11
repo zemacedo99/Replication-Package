@@ -140,6 +140,10 @@ If you find this solution useful and decide to use it in your projects, please g
 - J. Eduardo Ferreira Ribeiro
 - J. Antonio Dantas Macedo
 
+For citation or acknowledgment, please refer to their contributions:
+
+*"We want to thank J. Eduardo Ferreira Ribeiro and J. Antonio Dantas Macedo for their substantial contributions in developing and providing this replication package."*
+
 Your support in crediting our work helps in promoting open and collaborative development. Thank you for respecting our contributions!
 
 
