@@ -131,7 +131,8 @@ sudo apt install python3-pip
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. As the project interacts with various data sources, ensure any modifications don't disrupt the existing integrations.
 
-Credits and Acknowledgments
+## Credits and Acknowledgments
+
 If you find this solution useful and decide to use it in your projects, please give appropriate credit to the original authors. We kindly request that you acknowledge the contributions of:
 
 - J. Eduardo Ferreira Ribeiro
