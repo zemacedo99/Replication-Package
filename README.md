@@ -111,7 +111,28 @@ sudo apt install python3-pip
     - For SSL or proxy issues, try: `pip install --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host=files.pythonhosted.org -r requirements.txt`.
     - If all else fails, check the internet connection, ensure [PyPI](https://pypi.org/) is accessible, and look for specific error messages for more detailed guidance.
     - **Institutional Restrictions:** If you're unable to run the application due to restrictions from your institution's internet connection or VPN, consider obtaining an institutional token from the API Provider support.
+
+## How to Use the Solution
+
+### Customizing Your Search Queries
+- **Modify query_terms.csv:** 
+    - This CSV file contains categories and terms used to create search queries.
+    - Personalize the search strings by editing or adding terms according to your research needs.
+    - Ensure that the format of the file remains consistent for seamless processing.
     
+### Processing Retrieved Data
+- **Change data_process.py:**
+    - This script processes the data fetched from the APIs.
+    - It generates individual CSV files for each API with the retrieved information.
+    - The script also compiles a final CSV file with filtered results, removing duplicates, non-English articles, and publications after a specified date.
+    - You can modify the script to change the filtering criteria based on your requirements.
+
+### Narrowing Down the Search Scope
+- **Update venues_to_exclude.txt:**
+    - This text file lists the venues (journals, conferences, etc.) excluded from the search.
+    - Modify this file to reflect the scope of your literature review.
+    - Removing specific venues can help focus the search results more relevantly to your study.
+
 ## Features
 
 - **Multiple Data Sources Integration:** 
