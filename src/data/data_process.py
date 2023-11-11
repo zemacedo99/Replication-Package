@@ -1,9 +1,38 @@
 import pandas as pd
 import os
 import sys
+from langdetect import detect, LangDetectException
 root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, root_directory)
 from utils import data_to_pdf
+
+def is_english(text):
+    # Check if the text is a string and not NaN
+    if not isinstance(text, str) or pd.isna(text):
+        return False
+
+    # If the text is very short, it might be erroneously detected as non-English
+    if len(text.split()) <= 3:  # Threshold for short text, adjust as needed
+        return True
+
+    try:
+        return detect(text) == 'en'
+    except LangDetectException:
+        return False
+
+
+def remove_non_english_rows(df, col1, col2):
+    def row_is_non_english(row):
+        return not (is_english(row[col1]) or is_english(row[col2]))
+
+    # Identify non-English rows
+    non_english_rows = df[df.apply(row_is_non_english, axis=1)]
+
+    # Save these rows to a CSV file
+    non_english_rows.to_csv("data_results/non_english.csv", index=False)
+
+    # Keep rows where at least one column is in English
+    return df[~df.apply(row_is_non_english, axis=1)]
 
 def filter_venues(df, exclude_venues_file):
     """
@@ -11,7 +40,6 @@ def filter_venues(df, exclude_venues_file):
 
     :param df: Pandas DataFrame to filter.
     :param exclude_venues_file: Path to the text file containing venues to exclude (one per line).
-    :param output_csv_path: Path where the filtered CSV file will be saved.
     """
     # Read the list of venues to exclude from the text file
     with open(exclude_venues_file, 'r', encoding='utf-8') as file:
@@ -99,7 +127,10 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     all_results_df = pd.concat([scopus_df, ieee_df, engineering_village_df,science_direct_df, hal_open_science_results_df,acm_digital_library_results_df,springer_nature_results_df], ignore_index=True, sort=False)
 
     # Create the processed title
-    all_results_df['ProcessedTitle'] = all_results_df['Title'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~` |\\]+', '', regex=True)
+    all_results_df['ProcessedTitle'] = all_results_df['Title'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
+
+    # Create the processed Venue
+    all_results_df['ProcessedVenue'] = all_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
 
     # Save all results to a CSV
     all_results_df.to_csv(os.path.join(folder_name,"all_results.csv"), index=False)
@@ -116,12 +147,13 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     # Process unique_results_df using the filter_after_agile_manifesto_date function
     unique_results_df = filter_after_agile_manifesto_date(unique_results_df)
 
-    # unique_results_df['Venue'] = unique_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
-    data_to_pdf(unique_results_df, 'Venue')
+    unique_results_df = remove_non_english_rows(unique_results_df, 'ProcessedTitle', 'ProcessedVenue')
 
     exclude_venues_txt = 'data/venues_to_exclude.txt'  # Path to your text file with venues
-
     unique_results_df = filter_venues(unique_results_df, exclude_venues_txt)
+
+    # unique_results_df['Venue'] = unique_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
+    data_to_pdf(unique_results_df, 'Venue')
 
     # Save the unique results to CSV
     unique_results_df.to_csv(os.path.join(folder_name,"unique_results.csv"), index=False)

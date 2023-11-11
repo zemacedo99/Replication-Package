@@ -91,7 +91,7 @@ def data_to_pdf(df, column):
 
     # Save the PDF to a file
     pdf.output(f"{column}_counts.pdf")
-    print(f"PDF exported for {column}!")
+    # print(f"PDF exported for {column}!")
 
 def write_pretty_json_to_file(data, filename):
     with open(filename, 'w') as f:
