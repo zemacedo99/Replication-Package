@@ -153,7 +153,7 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     unique_results_df = filter_venues(unique_results_df, exclude_venues_txt)
 
     # unique_results_df['Venue'] = unique_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
-    data_to_pdf(unique_results_df, 'Venue')
+    # data_to_pdf(unique_results_df, 'Venue')
 
     # Save the unique results to CSV
     unique_results_df.to_csv(os.path.join(folder_name,"unique_results.csv"), index=False)

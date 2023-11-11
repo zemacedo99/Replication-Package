@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 from fpdf import FPDF
-from wordcloud import WordCloud
+# from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 class PDF(FPDF):
@@ -38,25 +38,25 @@ def generate_wordcloud(data):
     plt.close()
     return image_path
 
-def generate_wordcloud_from_text(text):
-    # Define dimensions to comfortably fit an A4 PDF page considering margins
-    wc_width, wc_height = 520, 760
+# def generate_wordcloud_from_text(text):
+#     # Define dimensions to comfortably fit an A4 PDF page considering margins
+#     wc_width, wc_height = 520, 760
 
-    wc = WordCloud(
-        width=wc_width,
-        height=wc_height,
-        background_color='white',
-        max_words=50,  # Reduced for better readability
-        max_font_size=150  # Increased for better readability
-    ).generate(text)
+#     wc = WordCloud(
+#         width=wc_width,
+#         height=wc_height,
+#         background_color='white',
+#         max_words=50,  # Reduced for better readability
+#         max_font_size=150  # Increased for better readability
+#     ).generate(text)
     
-    plt.figure(figsize=(wc_width / 80, wc_height / 80))
-    plt.imshow(wc, interpolation='bilinear')
-    plt.axis('off')
-    image_path = "temp_wordcloud.png"
-    plt.savefig(image_path, bbox_inches='tight', pad_inches=0.5)
-    plt.close()
-    return image_path
+#     plt.figure(figsize=(wc_width / 80, wc_height / 80))
+#     plt.imshow(wc, interpolation='bilinear')
+#     plt.axis('off')
+#     image_path = "temp_wordcloud.png"
+#     plt.savefig(image_path, bbox_inches='tight', pad_inches=0.5)
+#     plt.close()
+#     return image_path
 
 
 def data_to_pdf(df, column):
