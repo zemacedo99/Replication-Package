@@ -1,7 +1,9 @@
 # Replication Package
 
 This Replication Package effectively compiles scientific publications from multiple sources, including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, Springer Nature, and the ACM Digital Library. It utilizes Crossref for enhanced data integration.
+
 The package aids in extracting key details like titles, authors, years of publication, venues, and types of venues, as well as providing direct links to the articles.
+
 Moreover, it offers a feature to create a focused research query using specific terms from a CSV file. This solution is instrumental in refining search results by filtering out duplicates and omitting non-English publications. Additionally, the package supports the visual presentation of the data analyzed.
 
 ## Prerequisites
