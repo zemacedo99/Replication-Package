@@ -1,7 +1,26 @@
 import pandas as pd
 import os
-
+import sys
+root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, root_directory)
 from utils import data_to_pdf
+
+def filter_venues(df, exclude_venues_file):
+    """
+    Filters out rows from a DataFrame based on a list of venues to exclude provided in a text file.
+
+    :param df: Pandas DataFrame to filter.
+    :param exclude_venues_file: Path to the text file containing venues to exclude (one per line).
+    :param output_csv_path: Path where the filtered CSV file will be saved.
+    """
+    # Read the list of venues to exclude from the text file
+    with open(exclude_venues_file, 'r', encoding='utf-8') as file:
+        exclude_venues = [line.strip() for line in file]
+
+    # Filter out the rows with the venues to be excluded
+    filtered_df = df[~df['Venue'].isin(exclude_venues)]
+
+    return filtered_df
 
 def filter_after_agile_manifesto_date(df):
     """
@@ -94,11 +113,15 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
     # Drop duplicates from the all_results_df to only keep the first occurrence
     unique_results_df = all_results_df.drop_duplicates(subset='ProcessedTitle', keep='first')
 
+    # Process unique_results_df using the filter_after_agile_manifesto_date function
+    unique_results_df = filter_after_agile_manifesto_date(unique_results_df)
+
     # unique_results_df['Venue'] = unique_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
     data_to_pdf(unique_results_df, 'Venue')
 
-    # Process unique_results_df using the filter_after_agile_manifesto_date function
-    unique_results_df = filter_after_agile_manifesto_date(unique_results_df)
+    exclude_venues_txt = 'data/venues_to_exclude.txt'  # Path to your text file with venues
+
+    unique_results_df = filter_venues(unique_results_df, exclude_venues_txt)
 
     # Save the unique results to CSV
     unique_results_df.to_csv(os.path.join(folder_name,"unique_results.csv"), index=False)
@@ -108,3 +131,17 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
 
     # Save the duplicates to a CSV
     duplicated_df.to_csv(os.path.join(folder_name,"repeated.csv"), index=False)
+
+if __name__ == "__main__":
+
+    print(os.getcwd())
+    scopus_results = pd.read_csv('data_results/scopus.csv')
+    ieee_results = pd.read_csv('data_results/ieee.csv')
+    engineering_village_results = pd.read_csv('data_results/engineering_village.csv')
+    science_direct_results = pd.read_csv('data_results/science_direct.csv')
+    hal_open_science_results = pd.read_csv('data_results/hal_open_science.csv')
+    acm_digital_library_results = pd.read_csv('data_results/acm_digital_library.csv')
+    springer_nature_results = pd.read_csv('data_results/springer_nature.csv')
+
+    process_and_save_results(scopus_results, ieee_results, engineering_village_results, science_direct_results,hal_open_science_results,acm_digital_library_results,springer_nature_results)
+
