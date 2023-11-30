@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import sys
 from langdetect import detect, LangDetectException
+from data.data_validation import validate_results
 root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, root_directory)
 from utils import data_to_pdf
@@ -163,6 +164,8 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
 
     # Save the duplicates to a CSV
     duplicated_df.to_csv(os.path.join(folder_name,"repeated.csv"), index=False)
+
+    validate_results()
 
 if __name__ == "__main__":
 

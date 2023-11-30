@@ -1,0 +1,4 @@
+Towards a continuous certification of safety-critical avionics software
+Escape the waterfall: Agile for aerospace
+A reference method for airborne software requirements
+Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace
