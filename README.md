@@ -145,10 +145,13 @@ sudo apt install python3-pip
     - **Springer Nature** 
 
 - **CSV-based Queries:** The ability to create a research query from a CSV file with terms.
+    - **Enhanced Query Flexibility:** Now includes the capability to specify terms to exclude from the search, allowing for more precise and tailored query results.
 
 - **Data Visualization:** After gathering and processing the data, the solution offers functionality for its visualization, providing insights and easy-to-understand graphics.
 
 - **Error Handling:** Gracefully handles potential issues during data retrieval and extraction, ensuring consistent results.
+
+- **Query Validation Process:** Introduces a validation step to verify if all the relevant papers have been identified and included in the search results, enhancing the thoroughness and accuracy of the research.
 
 ## Contributing
 
