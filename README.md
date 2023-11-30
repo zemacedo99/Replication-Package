@@ -132,6 +132,12 @@ sudo apt install python3-pip
     - This text file lists the venues (journals, conferences, etc.) excluded from the search.
     - Modify this file to reflect the scope of your literature review.
     - Removing specific venues can help focus the search results more relevantly to your study.
+    
+### Validating Search Completeness
+- **Update titles_to_validate.txt:**
+    - This file should be updated with the titles of papers that the solution needs to find.
+    - This step ensures that the search process is comprehensive and captures all relevant literature.
+    - Regularly updating this file is crucial for maintaining the accuracy and completeness of the research.
 
 ## Features
 
