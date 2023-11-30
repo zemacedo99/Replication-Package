@@ -11,26 +11,36 @@ def create_query_from_csv(filename):
 
     # Ensure 'Term' is of string type
     df['Term'] = df['Term'].astype(str)
-    
-    # Group by 'Category' and join terms with ' OR '
-    query_groups = df.groupby('Category')['Term'].apply(lambda x: "({})".format(" OR ".join(['"{}"'.format(item) for item in x]))).tolist()
-    
-    # Join groups with ' AND '
-    query = ' AND '.join(query_groups)
+
+    # Separate 'ToRemove' category
+    to_remove_df = df[df['Category'] == 'ToRemove']
+    other_df = df[df['Category'] != 'ToRemove']
+
+    # Format 'ToRemove' terms with 'AND NOT'
+    to_remove_query = ' '.join(['AND NOT "{}"'.format(item) for item in to_remove_df['Term']])
+
+    # Group other terms by 'Category' and join with ' OR '
+    query_groups = other_df.groupby('Category')['Term'].apply(
+        lambda x: '({})'.format(' OR '.join(['"{}"'.format(item) for item in x]))
+    ).tolist()
+
+    # Combine all queries
+    combined_query = ' AND '.join(query_groups)
+    query = "{} {}".format(combined_query, to_remove_query).strip()
 
     return query
 
 def write_query_to_py_file(query):
     py_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "query.py")
     with open(py_file_path, 'w') as f:
-        f.write(f'QUERY = \'{query}\'\n')
-        f.write(f'SCOPUS_QUERY = \'{query}\'\n')
-        f.write(f'IEEE_QUERY = \'{query}\'\n')
-        f.write(f'ENGINEERING_VILLAGE_QUERY = \'{query}\'\n')
-        f.write(f'SCIENCE_DIRECT_QUERY = \'{query}\'\n')
-        f.write(f'HAL_OPEN_SCIENCE_QUERY = \'{query}\'\n')
-        f.write(f'ACM_DIGITAL_LIBRARY_QUERY = \'{query}\'\n')
-        f.write(f'SPRINGER_NATURE_QUERY = \'{query}\'\n')
+        f.write('QUERY = \'{}\'\n'.format(query))
+        f.write('SCOPUS_QUERY = \'{}\'\n'.format(query))
+        f.write('IEEE_QUERY = \'{}\'\n'.format(query))
+        f.write('ENGINEERING_VILLAGE_QUERY = \'{}\'\n'.format(query))
+        f.write('SCIENCE_DIRECT_QUERY = \'{}\'\n'.format(query))
+        f.write('HAL_OPEN_SCIENCE_QUERY = \'{}\'\n'.format(query))
+        f.write('ACM_DIGITAL_LIBRARY_QUERY = \'{}\'\n'.format(query))
+        f.write('SPRINGER_NATURE_QUERY = \'{}\'\n'.format(query))
 
 # Assuming 'query_terms.csv' is your file
 query = create_query_from_csv("query_terms.csv")
