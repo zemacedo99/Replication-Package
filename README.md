@@ -1,6 +1,6 @@
-# Replication Package
+# Replication Package Builder 
 
-This Replication Package effectively compiles scientific publications from multiple sources, including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, Springer Nature, and the ACM Digital Library. It utilizes Crossref for enhanced data integration.
+This Replication Package Builder effectively compiles scientific publications from multiple sources, including Scopus, IEEE Xplore, Engineering Village (Inspec), Science Direct, HAL Open Science, Springer Nature, and the ACM Digital Library. It utilizes Crossref for enhanced data integration.
 
 The package aids in extracting key details like titles, authors, years of publication, venues, and types of venues, as well as providing direct links to the articles.
 
@@ -10,12 +10,12 @@ Moreover, it offers a feature to create a focused research query using specific 
 
 ### Installing Python
 
-Before setting up this project, you need to have Python installed on your system. If you haven't already installed Python, follow these instructions:
+Before you set up this project, you will need to install Python on your system. If you haven't already installed Python, follow these instructions:
 
 #### Windows:
 1. Visit the [official Python website](https://www.python.org/downloads/windows/).
 2. Download the latest version of Python for Windows.
-3. Run the installer. Make sure to check the box that says "Add Python to PATH" during installation. This will make it easier to run Python from the command line.
+3. Run the installer. Check the box that says "Add Python to PATH" during installation. This will make it easier to run Python from the command line.
 
 #### macOS:
 1. Visit the [official Python website](https://www.python.org/downloads/mac-osx/).
@@ -23,7 +23,7 @@ Before setting up this project, you need to have Python installed on your system
 3. Follow the installation instructions.
 
 #### Linux:
-Most Linux distributions come with Python pre-installed. If not, you can use your distribution's package manager to install Python. For example, on Ubuntu:
+Most Linux distributions come with Python pre-installed. If not, you can install Python in your distribution's package manager. For example, on Ubuntu:
 
 ```bash
 sudo apt update
@@ -64,7 +64,7 @@ sudo apt install python3-pip
 
 3. **Virtual Environment Setup (Windows)**
 
-    It's recommended to use a virtual environment to avoid package conflicts between projects. If you're on Windows, here's how to set it up:
+    Using a virtual environment is recommended to avoid package conflicts between projects. If you're on Windows, here's how to set it up:
 
     1. Create a virtual environment: 
         ```bash
@@ -98,7 +98,7 @@ sudo apt install python3-pip
     - Rename `config_template.py` inside the search folder to `config.py`.
     - Open `config.py` and replace placeholders (e.g., `YOUR_SCOPUS_API_KEY_HERE`, `YOUR_IEEE_API_KEY_HERE`, `YOUR_EV_API_KEY_HERE`) with the respective API keys.
    
-   **Note**: The `config.py` file contains sensitive information (your API keys) and is gitignored to ensure it isn't accidentally committed to the repository. Always ensure you don't manually add this file to version control.
+   **Note**: The `config.py` file contains sensitive information (your API keys) and is gitignored to ensure it isn't accidentally committed to the repository. Please make sure you don't manually add this file to version control.
 
 7. **Run the Application**:
     ```bash
@@ -110,7 +110,7 @@ sudo apt install python3-pip
     - If a specific package causes an error, try installing it separately using `pip install <package-name>`.
     - For SSL or proxy issues, try: `pip install --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host=files.pythonhosted.org -r requirements.txt`.
     - If all else fails, check the internet connection, ensure [PyPI](https://pypi.org/) is accessible, and look for specific error messages for more detailed guidance.
-    - **Institutional Restrictions:** If you're unable to run the application due to restrictions from your institution's internet connection or VPN, consider obtaining an institutional token from the API Provider support.
+    - **Institutional Restrictions:** If you cannot run the application due to restrictions from your institution's internet connection or VPN, consider obtaining an institutional token from the API Provider support.
 
 ## How to Use the Solution
 
@@ -135,8 +135,8 @@ sudo apt install python3-pip
     
 ### Validating Search Completeness
 - **Update titles_to_validate.txt:**
-    - This file should be updated with the titles of papers that the solution needs to find.
-    - This step ensures that the search process is comprehensive and captures all relevant literature.
+    - This file should be updated with the titles of papers the solution needs to find.
+    - This step ensures the comprehensive search process captures all relevant literature.
     - Regularly updating this file is crucial for maintaining the accuracy and completeness of the research.
 
 ## Features
@@ -161,7 +161,7 @@ sudo apt install python3-pip
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. As the project interacts with various data sources, ensure any modifications don't disrupt the existing integrations.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you want to change. As the project interacts with various data sources, please ensure any modifications don't disrupt the existing integrations.
 
 ## Credits and Acknowledgments
 
@@ -172,7 +172,7 @@ If you find this solution useful and decide to use it in your projects, please g
 
 For citation or acknowledgment, please refer to their contributions:
 
-*"We want to thank J. Eduardo Ferreira Ribeiro and J. Antonio Dantas Macedo for their substantial contributions in developing and providing this replication package."*
+*"We want to thank J. Eduardo Ferreira Ribeiro and J. Antonio Dantas Macedo for their substantial contributions in developing and providing this replication package builder."*
 
 Your support in crediting our work helps in promoting open and collaborative development. Thank you for respecting our contributions!
 
