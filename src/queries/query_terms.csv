@@ -54,8 +54,36 @@ Standards,DO-331
 Standards,DO-297
 Standards,DO 297
 Standards,DO297
-ToRemove,aerial systems
-ToRemove,Sales
+ToRemove,Manufactoring
+ToRemove,manufactoring
+ToRemove,Formal Methods
+ToRemove,Formal methods
 ToRemove,Batery
 ToRemove,Bateries
-ToRemove,UAV
+ToRemove,Cells
+ToRemove,Hydrogen
+ToRemove,Computer Model
+ToRemove,Simulation
+ToRemove,Computer Simulation
+ToRemove,Network
+ToRemove,Neural
+ToRemove,Graphical
+ToRemove,Computer Graphics
+ToRemove,Machine Learning
+ToRemove,Electric
+ToRemove,Automated Driving
+ToRemove,Security
+ToRemove,Health
+ToRemove,MC/DC
+ToRemove,Flight
+ToRemove,Flight Control
+ToRemove,Crew
+ToRemove,Processor
+ToRemove,Satellite
+ToRemove,Power Converters
+ToRemove,Engine
+ToRemove,Turbine
+ToRemove,Braking System
+ToRemove,Carbon Emissions
+ToRemove,Ambulance
+ToRemove,Paramedics
