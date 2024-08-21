@@ -150,14 +150,16 @@ def process_and_save_results(scopus_results, ieee_results, engineering_village_r
 
     unique_results_df = remove_non_english_rows(unique_results_df, 'ProcessedTitle', 'ProcessedVenue')
 
-    exclude_venues_txt = 'data/venues_to_exclude.txt'  # Path to your text file with venues
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    exclude_venues_txt = os.path.normpath(os.path.join(current_dir, 'venues_to_exclude.txt')) # Path to your text file with venues
+     
     unique_results_df = filter_venues(unique_results_df, exclude_venues_txt)
 
     # unique_results_df['Venue'] = unique_results_df['Venue'].str.lower().str.replace(r'[!@#$%^&*()_+\-=[\]\{};:\'",.<>?/~`|\\]+', '', regex=True)
     # data_to_pdf(unique_results_df, 'Venue')
 
     # Save the unique results to CSV
-    unique_results_df.to_csv(os.path.join(folder_name,"unique_results.csv"), index=False)
+    unique_results_df.to_csv(os.path.normpath(os.path.join(folder_name,"unique_results.csv")), index=False)
 
     # Drop duplicates using the processed title
     duplicated_df = all_results_df[all_results_df.duplicated(subset='ProcessedTitle', keep=False)].drop_duplicates(subset='ProcessedTitle', keep='first')

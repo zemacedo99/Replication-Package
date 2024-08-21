@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Initialize flag variables to control the loop
     scopus_more_data = True
     ieee_more_data = True
-    engineering_village_more_data = True
+    engineering_village_more_data = False
     science_direct_more_data = True
     hal_open_science_more_data = True
     acm_digital_library_more_data = True

@@ -2,3 +2,15 @@ Towards a continuous certification of safety-critical avionics software
 Escape the waterfall: Agile for aerospace
 A reference method for airborne software requirements
 Improving Documentation Agility in Safety-Critical Software Systems Development For Aerospace
+Framework and tooling proposals for Agile certification of safety-critical embedded software in avionic systems
+Q-scrum: A framework for quality in safety-critical development
+A Set of Requirements for Certification of Airborne Military Software
+An agile developed interdisciplinary approach for safety-critical embedded system
+Applying agile methods to aircraft embedded software: an experimental analysis
+Developing a CDS with Scrum in an interdisciplinary academic project
+CARD-RM: A reference model for airborne software
+Towards defining software development processes in DO-178B with OpenUP
+A Lean and Highly-automated Model-Based Software Development Process Based on DO-178C/DO-331
+Automating Airborne Software Certification Compliance Using Cert DevOps
+Weaving Agility in Safety-Critical Software Development for Aerospace: From Concerns to Opportunities
+Beyond Tradition: Evaluating Agile feasibility in DO-178C for Aerospace Software Development

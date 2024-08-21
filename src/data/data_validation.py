@@ -47,9 +47,9 @@ def find_strings_in_csv(csv_file_path, strings_to_find):
 
 
 def validate_results():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_file_path = os.path.join(current_dir, '..', 'data_results', 'unique_results.csv')
-    strings_file_path = os.path.join(current_dir, 'titles_to_validate.txt')
+    current_dir = os.path.normpath(os.path.dirname(os.path.abspath(__file__)))
+    csv_file_path = os.path.normpath(os.path.join(current_dir, '..', 'data_results', 'unique_results.csv'))
+    strings_file_path = os.path.normpath(os.path.join(current_dir, 'titles_to_validate.txt'))
 
     strings_to_find = read_strings_from_file(strings_file_path)
     find_strings_in_csv(csv_file_path, strings_to_find)
